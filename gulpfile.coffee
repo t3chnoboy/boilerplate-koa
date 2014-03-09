@@ -15,7 +15,7 @@ paths =
   styles      : 'src/public/stylesheets/**/*.styl'
   images      : 'src/public/images/**/*'
   scripts     : 'src/public/scripts/**/*.coffee'
-  server      : 'src/*.coffee'
+  server      : ['src/*.coffee', 'src/routes/*.coffee']
   dest        : 'public'
 
 gulp.task 'server-scripts', ->
@@ -59,6 +59,7 @@ gulp.task 'watch', ->
   gulp.watch paths.views,   ['views']
   gulp.watch paths.styles,  ['styles']
   gulp.watch paths.scripts, ['scripts']
+  gulp.watch paths.server,  ['server-scripts']
 
 
 gulp.task 'default', ['connect', 'views', 'styles', 'scripts', 'images', 'server-scripts', 'watch']
