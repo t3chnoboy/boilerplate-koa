@@ -8,13 +8,20 @@ concat     = require 'gulp-concat'
 uglify     = require 'gulp-uglify'
 connect    = require 'gulp-connect'
 imagemin   = require 'gulp-imagemin'
+coffeeES6  = require 'gulp-coffee-es6'
 
 paths =
   views       : 'src/public/**/*.jade'
   styles      : 'src/public/stylesheets/**/*.styl'
   images      : 'src/public/images/**/*'
   scripts     : 'src/public/scripts/**/*.coffee'
+  server      : 'src/*.coffee'
   dest        : 'public'
+
+gulp.task 'server-scripts', ->
+  gulp.src(paths.server)
+    .pipe(coffeeES6(bare: yes))
+    .pipe(gulp.dest './')
 
 gulp.task 'scripts', ->
   gulp.src(paths.scripts)
@@ -54,4 +61,4 @@ gulp.task 'watch', ->
   gulp.watch paths.scripts, ['scripts']
 
 
-gulp.task 'default', ['connect', 'views', 'styles', 'scripts', 'images', 'watch']
+gulp.task 'default', ['connect', 'views', 'styles', 'scripts', 'images', 'server-scripts', 'watch']
