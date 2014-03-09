@@ -1,0 +1,29 @@
+{
+  "name": "webapp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/t3chnoboy/boilerplate-static",
+  "authors": [
+    "Dmitry Mazuro <dmitry.mazuro@icloud.com>"
+  ],
+  "description": "webapp",
+  "main": "index.html",
+  "keywords": [
+    "gulp",
+    "livereload",
+    "coffeescript",
+    "jade",
+    "stylus"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Developer/Packages/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
