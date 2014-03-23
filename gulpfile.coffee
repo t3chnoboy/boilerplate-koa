@@ -19,34 +19,34 @@ paths =
   dest        : 'public'
 
 gulp.task 'server-scripts', ->
-  gulp.src(paths.server)
-    .pipe(coffeeES6(bare: yes))
-    .pipe(gulp.dest './')
+  gulp.src paths.server
+    .pipe coffeeES6 bare: yes
+    .pipe gulp.dest './'
 
 gulp.task 'scripts', ->
-  gulp.src(paths.scripts)
-    .pipe(coffee())
-    .pipe(uglify())
-    .pipe(concat 'all.min.js')
-    .pipe(gulp.dest paths.dest + '/scripts')
-    .pipe(connect.reload())
+  gulp.src paths.scripts
+    .pipe coffee()
+    .pipe uglify()
+    .pipe concat 'all.min.js'
+    .pipe gulp.dest paths.dest + '/scripts'
+    .pipe connect.reload()
 
 gulp.task 'styles', ->
-  gulp.src(paths.styles)
-    .pipe(stylus())
-    .pipe(gulp.dest paths.dest + '/stylesheets')
-    .pipe(connect.reload())
+  gulp.src paths.styles
+    .pipe stylus()
+    .pipe gulp.dest paths.dest + '/stylesheets'
+    .pipe connect.reload()
 
 gulp.task 'images', ->
-  gulp.src(paths.images)
-    .pipe(imagemin())
-    .pipe(gulp.dest paths.dest + '/images')
+  gulp.src paths.images
+    .pipe imagemin()
+    .pipe gulp.dest paths.dest + '/images'
 
 gulp.task 'views', ->
-  gulp.src(paths.views)
-    .pipe(jade())
-    .pipe(gulp.dest paths.dest)
-    .pipe(connect.reload())
+  gulp.src paths.views
+    .pipe jade()
+    .pipe gulp.dest paths.dest
+    .pipe connect.reload()
 
 gulp.task 'connect', connect.server
   open:
