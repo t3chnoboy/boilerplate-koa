@@ -21,8 +21,9 @@
     "gulp-uglify": "^0.2.1",
     "gulp-imagemin": "~0.1.5",
     "gulp-coffee-es6": "git://github.com/t3chnoboy/gulp-coffee-es6.git",
-    "gulp-connect": "~1.0.7",
-    "gulp-coffee": "^1.4.1"
+    "gulp-coffee": "^1.4.1",
+    "gulp-livereload": "^1.2.0",
+    "gulp-nodemon": "^1.0.2"
   },
   "dependencies": {
     "co": "^3.0.4",
