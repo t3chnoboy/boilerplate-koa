@@ -8,7 +8,7 @@ serve      = require 'koa-static'
 session    = require 'koa-session'
 livereload = require 'koa-livereload'
 
-app = koa()
+app = module.exports = koa()
 
 app.use logger()
 app.use json()

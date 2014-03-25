@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --harmony"
   },
   "devDependencies": {
     "jade": "^1.3.0",
@@ -23,7 +23,8 @@
     "gulp-coffee-es6": "git://github.com/t3chnoboy/gulp-coffee-es6.git",
     "gulp-coffee": "^1.4.1",
     "gulp-livereload": "^1.2.0",
-    "gulp-nodemon": "^1.0.2"
+    "gulp-nodemon": "^1.0.2",
+    "supertest": "^0.10.0"
   },
   "dependencies": {
     "co": "^3.0.4",
