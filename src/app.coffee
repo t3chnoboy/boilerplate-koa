@@ -1,20 +1,22 @@
-koa = require 'koa'
-logger = require 'koa-logger'
-router = require 'koa-router'
-serve = require 'koa-static'
-parse = require 'co-body'
-views = require 'co-views'
-json = require 'koa-json'
-session = require 'koa-session'
+koa        = require 'koa'
+parse      = require 'co-body'
+json       = require 'koa-json'
+views      = require 'co-views'
+logger     = require 'koa-logger'
+router     = require 'koa-router'
+serve      = require 'koa-static'
+session    = require 'koa-session'
+livereload = require 'koa-livereload'
 
 app = koa()
 
 app.use logger()
 app.use json()
 app.use session()
+app.use livereload()
 app.use router app
 render = views 'views/'
-app.use serve './public'
+app.use serve 'public/'
 require('koa-qs')(app)
 
 app.get '/', ->*
