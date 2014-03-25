@@ -6,9 +6,10 @@ coffee     = require 'gulp-coffee'
 stylus     = require 'gulp-stylus'
 concat     = require 'gulp-concat'
 uglify     = require 'gulp-uglify'
-connect    = require 'gulp-connect'
+nodemon    = require 'gulp-nodemon'
 imagemin   = require 'gulp-imagemin'
 coffeeES6  = require 'gulp-coffee-es6'
+livereload = require 'gulp-livereload'
 
 paths =
   views       : 'src/public/**/*.jade'
@@ -29,37 +30,47 @@ gulp.task 'scripts', ->
     .pipe uglify()
     .pipe concat 'all.min.js'
     .pipe gulp.dest paths.dest + '/scripts'
-    .pipe connect.reload()
+    .pipe livereload()
 
 gulp.task 'styles', ->
   gulp.src paths.styles
     .pipe stylus()
     .pipe gulp.dest paths.dest + '/stylesheets'
-    .pipe connect.reload()
+    .pipe livereload()
 
 gulp.task 'images', ->
   gulp.src paths.images
     .pipe imagemin()
     .pipe gulp.dest paths.dest + '/images'
+    .pipe livereload()
 
 gulp.task 'views', ->
   gulp.src paths.views
     .pipe jade()
     .pipe gulp.dest paths.dest
-    .pipe connect.reload()
+    .pipe livereload()
 
-gulp.task 'connect', connect.server
-  open:
-    browser  : 'safari'
-  port       : 1337
-  root       : [paths.dest]
-  livereload : yes
+gulp.task 'rendered-views', ->
+  gulp.src 'views/**/*.jade'
+    .pipe livereload()
+
+gulp.task 'server', ->
+  nodemon
+    script: 'app.js'
+    nodeArgs: ['--harmony']
+    ignore: [
+      './src/**'
+      './test/**'
+      './public/**'
+      './node_modules/**'
+    ]
 
 gulp.task 'watch', ->
-  gulp.watch paths.views,   ['views']
-  gulp.watch paths.styles,  ['styles']
-  gulp.watch paths.scripts, ['scripts']
-  gulp.watch paths.server,  ['server-scripts']
+  gulp.watch paths.views       , ['views']
+  gulp.watch paths.styles      , ['styles']
+  gulp.watch paths.scripts     , ['scripts']
+  gulp.watch paths.server      , ['server-scripts']
+  gulp.watch 'views/**/*.jade' , ['rendered-views']
 
 
-gulp.task 'default', ['connect', 'views', 'styles', 'scripts', 'images', 'server-scripts', 'watch']
+gulp.task 'default', ['views', 'styles', 'scripts', 'images', 'server-scripts', 'watch', 'server']
