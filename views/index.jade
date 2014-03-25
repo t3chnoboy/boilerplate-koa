@@ -1,13 +1,14 @@
-doctype html
-html(lang="en")
-  head
-    title Webapp
-    meta(charset='utf-8')
-    link(rel="stylesheet", href="stylesheets/style.css", type="text/css")
-    link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css", type="text/css")
-  body
-    include partials/navbar
-    #container
-      h1 webapp boilerplate
-      script(src="scripts/all.min.js")
-    include partials/footer
+extends layout
+
+block head
+  link(rel="stylesheet", href="stylesheets/style.css", type="text/css")
+  link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css", type="text/css")
+
+block body
+  include partials/navbar
+
+  #container
+    h1 webapp boilerplate
+
+  include partials/footer
+  script(src="scripts/all.min.js")
